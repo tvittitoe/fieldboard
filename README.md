@@ -2,11 +2,6 @@ lynx-node-scoreboard
 ====================
 Node.js Web Scoreboard for FinishLynx. Originally written by Chris Sabato.
 
-+ LAN Version
-  + Runs on a local network — requires socket.io
-+ WAN Version
-  + Runs on a webserver — requires pusher.com account
-
 ###Node Setup###
 --------------------
 + install [node.js](http://nodejs.org/)
