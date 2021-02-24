@@ -1,6 +1,7 @@
-lynx-node-scoreboard
+Fieldboard 
 ====================
-Node.js Web Scoreboard for FinishLynx. Originally written by Chris Sabato.
+Node.js web server to be run on RaspberryPis to output on LED video boards. Can receive stats and time from Finishlynx or AthleticLive. 
+Adapted from Chris Sabato, web scoreboard.
 
 ###Node Setup###
 --------------------
