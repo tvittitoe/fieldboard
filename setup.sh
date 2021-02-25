@@ -24,4 +24,6 @@ sudo pm2 start /home/pi/fieldboard/fboard.js --watch
 sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
 
 # Todo
-# Watch for css or html update, install Zerotier and add to network, VNC, Chrome Watch, Initialize to refresh?, USB Tunneling, ead-only, html/java cases, Set Resolution
+# Watch for css or html update, install Zerotier and add to network, VNC, Chrome Watch, Initialize to refresh?, USB Tunneling, ead-only, html/java cases, Set Resolution,
+#Fix screen blanking, set background, move toolbar
+
