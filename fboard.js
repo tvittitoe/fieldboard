@@ -8,8 +8,6 @@ var udpResultsServer = dgram.createSocket("udp4");
 var udpTimeServer = dgram.createSocket("udp4");
 var http = require('http');
 var fs = require('fs');
-var io = require('socket.io');
-
 
 
 // Defining some variables
@@ -77,6 +75,8 @@ udpTimeServer.on("message", function (clock, rinfo) {
     
    time = clock.toString();
    time = time.trim();
+   //Uncomment the line below to strip tenths
+    //time = time.substr(0, time.lastIndexOf('.'));
    r[0]=time;
     
 });
@@ -104,6 +104,7 @@ var htmlServer = http.createServer(function(request, response) {
     response.writeHeader(200, {"Content-Type": "text/html"});
     response.end(htmlPage);
 });
+var io = require('socket.io')(htmlServer);
 htmlServer.listen(8000);
 console.log("HTML server started on: " + getIP());
 
