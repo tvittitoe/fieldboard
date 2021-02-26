@@ -13,12 +13,13 @@ echo '127.0.1.1      ' $replace | sudo tee -a /etc/hosts
 echo 'hdmi_force_hotplug=1' | sudo tee -a /boot/config.txt
 
 ## Set Resolution
+
+## Background and Trashcan
 pcmanfm --set-wallpaper="~/fieldboard/bg.png"
+sudo sed -i 's/show_trash=1/show_trash=0/' ~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf
 
 ## Disable screen blanking
 sudo sed -i 's/$/ consoleblank=0/' /boot/cmdline.txt
-
-## Set Background
 
 # Enable SSH
 sudo systemctl enable ssh
