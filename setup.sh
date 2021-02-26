@@ -1,10 +1,14 @@
 #!/bin/bash
 
-## Move Toolbar
+# Upgrade
+sudo apt update
+sudo apt upgrade -y
+
+# Move Toolbar
 sudo cp /etc/xdg/lxpanel/LXDE-pi/panels/panel ~/.config/lxpanel/LXDE-pi/panels/ 
 sudo sed -i 's/edge=top/edge=bottom/' ~/.config/lxpanel/LXDE-pi/panels/panel
 
-## Update Hostname
+# Update Hostname
 read -p "New Hostname: " replace
 echo $replace | sudo tee /etc/hostname
 echo '127.0.1.1      ' $replace | sudo tee -a /etc/hosts
@@ -15,7 +19,7 @@ echo 'hdmi_force_hotplug=1' | sudo tee -a /boot/config.txt
 ## Set Resolution
 
 ## Background and Trashcan
-pcmanfm --set-wallpaper="~/fieldboard/bg.png"
+pcmanfm --set-wallpaper "/home/pi/fieldboard/bg.png"
 sudo sed -i 's/show_trash=1/show_trash=0/' ~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf
 
 ## Disable screen blanking
@@ -25,9 +29,7 @@ sudo sed -i 's/$/ consoleblank=0/' /boot/cmdline.txt
 sudo systemctl enable ssh
 sudo systemctl start ssh
 
-# Upgrade
-sudo apt update
-sudo apt upgrade -y
+
 
 # Install Node, npm, pm2, socket.io
 sudo apt install -y nodejs npm 
