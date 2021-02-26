@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # Disable screen blanking
-xset s noblank
-xset s off
-xset -dpms
+
 
 # Enable SSH
 sudo systemctl enable ssh
@@ -23,7 +21,11 @@ sudo systemctl start vncserver-x11-serviced.service
 sudo pm2 start /home/pi/fieldboard/fboard.js --watch
 sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
 
+# Set up ZeroTier
+curl -s https://install.zerotier.com | sudo bash
+sudo zerotier-cli join 3efa5cb78a8c50a6
+
 # Todo
-# Watch for css or html update, install Zerotier and add to network, VNC, Chrome Watch, Initialize to refresh?, USB Tunneling, ead-only, html/java cases, Set Resolution,
+# Watch for css or html update, Chrome Watch, Initialize to refresh?, USB Tunneling, ead-only, html/java cases, Set Resolution,
 #Fix screen blanking, set background, move toolbar
 
