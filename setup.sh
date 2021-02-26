@@ -34,6 +34,7 @@ sudo systemctl start ssh
 # Install Node, npm, pm2, socket.io
 sudo apt install -y nodejs npm 
 sudo npm i -g pm2 socket.io
+sudo npm i socket.io
 
 # Setup RealVNC
 sudo apt install -y realvnc-vnc-server
