@@ -10,12 +10,12 @@ echo $replace | sudo tee /etc/hostname
 echo '127.0.1.1      ' $replace | sudo tee -a /etc/hosts
 
 ## Force Hotplug
+echo 'hdmi_force_hotplug=1' | sudo tee -a /boot/config.txt
 
 ## Set Resolution
 
 ## Disable screen blanking
 sudo sed -i 's/$/ consoleblank=0/' /boot/cmdline.txt
-
 
 ## Set Background
 
@@ -46,7 +46,7 @@ sudo zerotier-cli join 3efa5cb78a8c50a6
 
 ## USB Tunneling
 
-## Chrom Autorun
+## Chrome Autorun
 
 ## Read-Only
 
