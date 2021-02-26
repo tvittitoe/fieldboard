@@ -6,8 +6,8 @@ sudo sed -i 's/edge=top/edge=bottom/' ~/.config/lxpanel/LXDE-pi/panels/panel
 
 ## Update Hostname
 read -p "New Hostname: " replace
-echo replace | sudo tee -a /etc/hostname
-echo '127.0.1.1 ' $replace | sudo tee -a /etc/hosts
+echo $replace | sudo tee /etc/hostname
+echo '127.0.1.1      ' $replace | sudo tee -a /etc/hosts
 
 ## Force Hotplug
 
@@ -23,13 +23,16 @@ sudo sed -i 's/$/ consoleblank=0/' /boot/cmdline.txt
 sudo systemctl enable ssh
 sudo systemctl start ssh
 
+# Upgrade
 sudo apt update
 sudo apt upgrade -y
+
 # Install Node, npm, pm2, socket.io
-sudo apt install -y nodejs npm realvnc-vnc-server
+sudo apt install -y nodejs npm 
 sudo npm i -g pm2 socket.io
 
 # Setup RealVNC
+sudo apt install -y realvnc-vnc-server
 sudo systemctl enable vncserver-x11-serviced.service
 sudo systemctl start vncserver-x11-serviced.service
 
