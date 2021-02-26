@@ -49,9 +49,30 @@ sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
 curl -s https://install.zerotier.com | sudo bash
 sudo zerotier-cli join 3efa5cb78a8c50a6
 
+
+ech
 ## USB Tunneling
 
 ## Chrome Autorun
+echo "
+[Unit]
+Description=Chromium Kiosk
+Wants=graphical.target
+After=graphical.target
+
+[Service]
+Environment=DISPLAY=:0.0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+Type=simple
+ExecStart=/bin/bash /home/pi/kiosk.sh
+Restart=on-abort
+User=pi
+Group=pi
+
+[Install]
+WantedBy=graphical.target" | sudo tee  /lib/systemd/system/kiosk.service
+
+sudo systemctl enable kiosk.service
 
 ## Read-Only
 
