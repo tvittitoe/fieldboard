@@ -33,7 +33,7 @@ sudo systemctl start ssh
 
 # Install Node, npm, pm2, socket.io
 sudo apt install -y nodejs npm unclutter
-sudo npm i -g pm2 socket.io
+sudo npm i -g pm2
 sudo npm i socket.io
 
 # Setup RealVNC
@@ -48,10 +48,6 @@ sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
 ## Set up ZeroTier
 curl -s https://install.zerotier.com | sudo bash
 sudo zerotier-cli join 3efa5cb78a8c50a6
-
-
-ech
-## USB Tunneling
 
 ## Chrome Autorun
 echo "
