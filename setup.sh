@@ -3,7 +3,7 @@
 # Upgrade
 sudo apt update
 sudo apt upgrade -y
-sudo chmod +x /home/pi/kiosk.sh
+sudo chmod +x /home/pi/fieldboard/kiosk.sh
 
 # Move Toolbar
 sudo cp /etc/xdg/lxpanel/LXDE-pi/panels/panel ~/.config/lxpanel/LXDE-pi/panels/ 
