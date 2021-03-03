@@ -90,7 +90,7 @@ udpTimeServer.on("message", function (clock, rinfo) {
 var htmlPage;
 
 // read html file to serve
-fs.readFile('fboard.html', function(error, data){
+fs.readFile('/home/pi/fieldboard/fboard.html', function(error, data){
     if (error){
         throw error;
     }
