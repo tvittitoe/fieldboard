@@ -34,6 +34,7 @@ sudo systemctl start ssh
 # Install Node, npm, pm2, socket.io
 sudo apt install -y nodejs npm unclutter
 sudo npm i -g pm2
+cd /home/pi/fieldboard/
 sudo npm i socket.io
 
 # Setup RealVNC
