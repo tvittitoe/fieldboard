@@ -48,8 +48,9 @@ sudo systemctl enable vncserver-x11-serviced.service
 sudo systemctl start vncserver-x11-serviced.service
 
 ## Create pm2 instance to run on startup and monitor script
-sudo pm2 start /home/pi/fieldboard/fboard.js --watch
+pm2 start /home/pi/fieldboard/fboard.js --watch
 sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
+pm2 save
 
 ## Set up ZeroTier
 curl -s https://install.zerotier.com | sudo bash
