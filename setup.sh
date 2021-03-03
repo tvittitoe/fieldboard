@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x #echo on
 
 # Upgrade
 sudo apt update
@@ -58,7 +59,7 @@ read -n 1 -r -s -p $'Press enter to continue...\n'
 ## Set up ZeroTier
 curl -s https://install.zerotier.com | sudo bash
 sudo zerotier-cli join 3efa5cb78a8c50a6
-
+read -n 1 -r -s -p $'Press enter to continue...\n'
 ## Chrome Autorun
 echo "
 [Unit]
@@ -79,7 +80,7 @@ Group=pi
 WantedBy=graphical.target" | sudo tee  /lib/systemd/system/kiosk.service
 read -n 1 -r -s -p $'Press enter to continue...\n'
 sudo systemctl enable kiosk.service
-
+read -n 1 -r -s -p $'Press enter to continue...\n'
 ## Read-Only
 read -n 1 -r -s -p $'Press enter to continue...\n'
 sudo reboot
