@@ -116,7 +116,7 @@ serv_io.sockets.on('connection', function(socket){
     setInterval(function(){
         jsonResults = JSON.stringify(r);        // convert final array into a json string
         socket.send(jsonResults);               // sent json results via socket
-    }, 250);
+    }, 100);
 });
 
 
