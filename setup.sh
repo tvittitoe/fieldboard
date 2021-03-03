@@ -74,4 +74,6 @@ sudo systemctl enable kiosk.service
 
 ## Read-Only
 
+sudo reboot
+
 
