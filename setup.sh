@@ -3,9 +3,9 @@ set -x #echo on
 set -e
 
 # Upgrade
-sleep 5
 sudo apt update
-sudo apt upgrade -y
+sudo apt full-upgrade -y
+sudo apt autoremove
 sudo chmod +x /home/pi/fieldboard/kiosk.sh
 
 
@@ -25,6 +25,7 @@ echo 'hdmi_force_hotplug=1' | sudo tee -a /boot/config.txt
 
 ## Background and Trashcan
 pcmanfm --set-wallpaper "/home/pi/fieldboard/bg.png"
+sleep 4
 sudo sed -i 's/show_trash=1/show_trash=0/' ~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf
 
 ## Disable screen blanking
@@ -48,14 +49,12 @@ sudo systemctl start vncserver-x11-serviced.service
 
 ## Create pm2 instance to run on startup and monitor script
 sudo pm2 start /home/pi/fieldboard/fboard.js --watch
-read -n 1 -r -s -p $'Press enter to continue...\n'
-sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
-read -n 1 -r -s -p $'Press enter to continue...\n'
+sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
 
 ## Set up ZeroTier
 curl -s https://install.zerotier.com | sudo bash
 sudo zerotier-cli join 3efa5cb78a8c50a6
-read -n 1 -r -s -p $'Press enter to continue...\n'
+
 ## Chrome Autorun
 echo "
 [Unit]
@@ -67,18 +66,18 @@ After=graphical.target
 Environment=DISPLAY=:0.0
 Environment=XAUTHORITY=/home/pi/.Xauthority
 Type=simple
-ExecStart=/bin/bash /home/pi/kiosk.sh
+ExecStart=/bin/bash /home/pi/fieldboard/kiosk.sh
 Restart=on-abort
 User=pi
 Group=pi
 
 [Install]
 WantedBy=graphical.target" | sudo tee  /lib/systemd/system/kiosk.service
-read -n 1 -r -s -p $'Press enter to continue...\n'
+
 sudo systemctl enable kiosk.service
-read -n 1 -r -s -p $'Press enter to continue...\n'
+
 ## Read-Only
-read -n 1 -r -s -p $'Press enter to continue...\n'
+read -n 1 -r -s -p $'Press enter to reboot...\n'
 sudo reboot
 
 
